@@ -1,6 +1,6 @@
 import React from 'react'
 import { ShopContext } from "../../context/shop-context";
-
+import { useContext } from 'react';
 
 export const Product = (props) => {
     const { id, productName, price, productImage } = props.data;
@@ -9,7 +9,7 @@ export const Product = (props) => {
 
     return (
         <div className='product'>
-            <img src={productImage} />
+            <img src={productImage} alt='Product goes here'/>
             <div className="description">
                 <p>
                     <b>{productName}</b>

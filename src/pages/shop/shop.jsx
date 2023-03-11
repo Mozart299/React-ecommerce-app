@@ -10,7 +10,7 @@ export const Shop = () => {
             <h1>Peter's Shop</h1>
         </div>
         <div className='products'>
-            {PRODUCTS.map((product) => <Product /> )}
+            {PRODUCTS.map((product) => (<Product data={product}/> ))}
         </div>
     </div>
   )
