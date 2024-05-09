@@ -1,7 +1,18 @@
 import { createContext, useState } from "react";
 import { PRODUCTS } from "../products";
 
-export const ShopContext = createContext(null);
+// Define a default context value that matches the shape of the context value you intend to provide
+const defaultContextValue = {
+  cartItems: {},
+  addToCart: () => {},
+  updateCartItemCount: () => {},
+  removeFromCart: () => {},
+  getTotalCartAmount: () => 0,
+  checkout: () => {},
+};
+
+// Initialize the context with the default value
+export const ShopContext = createContext(defaultContextValue);
 
 const getDefaultCart = () => {
   let cart = {};
@@ -26,21 +37,22 @@ export const ShopContextProvider = (props) => {
   };
 
   const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    setCartItems((prev) => ({...prev, [itemId]: prev[itemId] + 1 }));
   };
 
   const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1 }));
   };
 
   const updateCartItemCount = (newAmount, itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
+    setCartItems((prev) => ({...prev, [itemId]: newAmount }));
   };
 
   const checkout = () => {
     setCartItems(getDefaultCart());
   };
 
+  // Provide the context value to the children components
   const contextValue = {
     cartItems,
     addToCart,
